@@ -1,0 +1,60 @@
+{% extends 'partials/base.html' %}
+{% block title %} Rack Page {% endblock %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+{%include 'partials/topnav.html' %}
+<!--Table-->
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-8">
+            <table class="table bg-white">
+                <thead class="bg-info">
+                  <tr class = "text-white">
+                    
+                    <th scope="col">Rack</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for isle in isles %}
+                  <tr>
+                    
+                    <td>{{isle.rack}}</td>
+                    <td>{{isle.product}}</td>
+                    <td>{{isle.rack_quantity}}</td>
+                    
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+
+        <div class="col-md-4">
+          <div class="border p-3 bg-white">
+            <h4> Add Racks</h4>
+            <hr>
+            <form method ="POST">
+              {% csrf_token %}     
+              {{form | crispy}}
+               
+                  <input class ="btn btn-success btn-block" type ="submit" value = "Add Product">
+
+            </form>
+
+          </div>
+      </div>
+
+
+    </div>
+ 
+  
+
+</div>
+
+
+
+
+<!--End Table-->
+{% endblock %}
